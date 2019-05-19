@@ -67,9 +67,9 @@ $ yarn add redux-devtools-extension --dev
 
 #### todo
 
-- [ ] redux-chunk middleware
-- [ ] action
-  - [ ] GET_DOGS
-  - [ ] CLEAR_DOGS
+- [x] redux-chunk middleware
+- [x] action
+  - [x] GET_DOGS
+  - [x] CLEAR_DOGS
 - [ ] Button
 - [ ] List

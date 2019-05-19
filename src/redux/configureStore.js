@@ -1,12 +1,13 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import { composeWithDevTools } from "redux-devtools-extension";
 import thunk from "redux-thunk";
+import dogs from "./modules/dogs";
 
 const env = process.env.NODE_ENV;
 
 const middlewares = [thunk];
 
-const reducer = combineReducers();
+const reducer = combineReducers({ dogs });
 
 let store;
 
