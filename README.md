@@ -76,4 +76,4 @@ $ yarn add react-masonry-component
   - [x] CLEAR_DOGS
 - [x] Button
 - [x] List
-- [ ] 페이지네이션
+  - [x] 페이지네이션
