@@ -2,10 +2,10 @@
 const ADD_DOGS = "ADD_DOGS";
 const CLEAR_DOGS = "CLEAR_DOGS";
 
-const addDogs = dogs => {
+const addDogs = images => {
   return {
     type: ADD_DOGS,
-    dogs
+    images
   };
 };
 
@@ -16,7 +16,7 @@ const clearDogs = () => {
 };
 
 // initial state
-const initialState = { dogs: [] };
+const initialState = { images: [] };
 
 // reducer
 const reducer = (state = initialState, action) => {
@@ -33,13 +33,13 @@ const reducer = (state = initialState, action) => {
 // reducer function
 const applyClearDogs = () => {
   return {
-    dogs: []
+    images: []
   };
 };
 
 const applyAddDogs = (state, action) => {
   return {
-    dogs: [...state.dogs, ...action.dogs]
+    images: [...state.images, ...action.images]
   };
 };
 
@@ -48,7 +48,7 @@ const getDogs = () => {
   return dispatch => {
     fetch("/data.json")
       .then(response => response.json())
-      .then(dogs => dispatch(addDogs(dogs)))
+      .then(images => dispatch(addDogs(images)))
       .catch(err => console.log(err));
   };
 };

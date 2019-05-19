@@ -1,0 +1,16 @@
+.Container {
+  margin: 0px auto;
+  width: 80%;
+  img {
+    height: auto;
+    width: 24%;
+    margin: 0.5%;
+  }
+  @media (max-width: 782px) {
+    img {
+      height: auto;
+      width: 100%;
+      margin: 1% 1% 0 0;
+    }
+  }
+}
