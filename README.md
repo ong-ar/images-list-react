@@ -63,6 +63,9 @@ $ yarn add redux-thunk
 
 # 개발 툴로 redux 디버깅 관련 패키지
 $ yarn add redux-devtools-extension --dev
+
+# 이미지 레이아웃 (masonry)
+$ yarn add react-masonry-component
 ```
 
 #### todo
@@ -71,5 +74,5 @@ $ yarn add redux-devtools-extension --dev
 - [x] action
   - [x] GET_DOGS
   - [x] CLEAR_DOGS
-- [ ] Button
+- [x] Button
 - [ ] List
