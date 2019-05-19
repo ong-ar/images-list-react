@@ -66,6 +66,9 @@ $ yarn add redux-devtools-extension --dev
 
 # 이미지 레이아웃 (masonry)
 $ yarn add react-masonry-component
+
+# scroll bottom event
+$ yarn add react-bottom-scroll-listener
 ```
 
 #### todo
@@ -108,6 +111,12 @@ $ yarn add react-masonry-component
 }
 ```
 
-`페이지네이션` 은 전역 scroll 이벤트 리스너를 두어 적용했습니다.  
+`페이지네이션` 은 ~~전역 scroll 이벤트 리스너를 두어 적용했습니다.  
 조건식은 `window.innerHeight + window.scrollY >= document.body.scrollHeight` 입니다.  
-해당 조건이 만족되면 redux action `getDogs` 를 호출합니다.
+해당 조건이 만족되면 redux action `getDogs` 를 호출합니다.~~  
+모바일에서 정상적으로 나오지 않아 패키지를 사용했습니다.
+`react-bottom-scroll-listener` 를 사용하여 적용하였습니다.
+
+```jsx
+<BottomScrollListener onBottom={this.props.getDogs}>...</BottomScrollListener>
+```
