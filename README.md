@@ -92,7 +92,7 @@ $ yarn add react-bottom-scroll-listener
 `768px` 이상 일 경우 이미지 당 25% 씩 할당하여 4개의 이미지 출력  
 `768px` 이하 일 경우 이미지 당 100% 할당 하여 1개의 이미지 출력
 
-```css
+```scss
 .Container {
   margin: 0px auto;
   width: 80%;
