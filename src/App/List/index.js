@@ -6,9 +6,14 @@ import BottomScrollListener from "react-bottom-scroll-listener";
 import "./index.scss";
 
 class List extends Component {
+  onBottom = () => {
+    if (this.props.dogs.images.length > 0) {
+      this.props.getDogs();
+    }
+  };
   render() {
     return (
-      <BottomScrollListener onBottom={this.props.getDogs}>
+      <BottomScrollListener onBottom={this.onBottom}>
         <Masonry
           className="Container"
           options={{
