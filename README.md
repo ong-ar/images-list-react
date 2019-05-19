@@ -58,12 +58,16 @@
 #### 추가 패키지
 
 ```bash
+# redux 미들웨어 (외부 데이터 연동)
+$ yarn add redux-thunk
 
+# 개발 툴로 redux 디버깅 관련 패키지
+$ yarn add redux-devtools-extension --dev
 ```
 
 #### todo
 
-- [ ] redux-chunk 추가
+- [ ] redux-chunk middleware
 - [ ] action
   - [ ] GET_DOGS
   - [ ] CLEAR_DOGS
