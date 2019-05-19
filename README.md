@@ -86,7 +86,7 @@ $ yarn add react-bottom-scroll-listener
 구조는 크게 바꾸지 않고 구현했습니다.  
 `GET DOGS` 와 `CLEAR DOGS` 를 보고 redux 를 사용하여 구현하기를 유도하신 거 같아 두 개의 액션을 만들어서 `Buttons.js`에 적용했습니다. API Request 처럼 외부 데이터를 fetch 하여 state 를 관리할 수 있도록 redux-chunk 미들웨어를 적용하였습니다.
 
-`List.js` 에서는 조건이 4개씩 순서대로 불러올 수 있도록 `react-masonry-component` 패키지를 사용하여 구현하였습니다.  
+`List.js` 에서는 조건맞게 순서대로 출력할 수 있도록 `react-masonry-component` 패키지를 사용하여 구현하였습니다.  
 부모의 width 크기는 80% 로 잡고 중앙 정렬을 하였고 자식 이미지는 `768px` 이상의 화면에서는 한 줄당 4개의 이미지 그 이하일 경우 한 줄당 1개의 이미지를 출력해야 하므로 아래와 같이 이미지를 적용했습니다.
 
 `768px` 이상 일 경우 이미지 당 25% 씩 할당하여 4개의 이미지 출력  
