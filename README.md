@@ -63,12 +63,6 @@ $ yarn add redux-thunk
 
 # 개발 툴로 redux 디버깅 관련 패키지
 $ yarn add redux-devtools-extension --dev
-
-# 이미지 레이아웃 (masonry)
-$ yarn add react-masonry-component
-
-# scroll bottom event
-$ yarn add react-bottom-scroll-listener
 ```
 
 #### todo
@@ -79,44 +73,14 @@ $ yarn add react-bottom-scroll-listener
   - [x] CLEAR_DOGS
 - [x] Button
 - [x] List
-  - [x] 페이지네이션
+  - [ ] 스타일
+  - [ ] 페이지네이션
 
 #### 설명
 
 구조는 크게 바꾸지 않고 구현했습니다.  
 `GET DOGS` 와 `CLEAR DOGS` 를 보고 redux 를 사용하여 구현하기를 유도하신 거 같아 두 개의 액션을 만들어서 `Buttons.js`에 적용했습니다. API Request 처럼 외부 데이터를 fetch 하여 state 를 관리할 수 있도록 redux-chunk 미들웨어를 적용하였습니다.
 
-`List.js` 에서는 조건맞게 순서대로 출력할 수 있도록 `react-masonry-component` 패키지를 사용하여 구현하였습니다.  
-부모의 width 크기는 80% 로 잡고 중앙 정렬을 하였고 자식 이미지는 `768px` 이상의 화면에서는 한 줄당 4개의 이미지 그 이하일 경우 한 줄당 1개의 이미지를 출력해야 하므로 아래와 같이 이미지를 적용했습니다.
-
-`768px` 이상 일 경우 이미지 당 25% 씩 할당하여 4개의 이미지 출력  
-`768px` 이하 일 경우 이미지 당 100% 할당 하여 1개의 이미지 출력
-
-```scss
-.Container {
-  margin: 0px auto;
-  width: 80%;
-  img {
-    height: auto;
-    width: 24%;
-    margin: 0.5%;
-  }
-  @media (max-width: 768px) {
-    img {
-      height: auto;
-      width: 100%;
-      margin: 1% 1% 0 0;
-    }
-  }
-}
-```
-
-`페이지네이션` 은 ~~전역 scroll 이벤트 리스너를 두어 적용했습니다.  
-조건식은 `window.innerHeight + window.scrollY >= document.body.scrollHeight` 입니다.  
-해당 조건이 만족되면 redux action `getDogs` 를 호출합니다.~~  
-모바일에서 정상적으로 나오지 않아 패키지를 사용했습니다.  
-`react-bottom-scroll-listener` 를 사용하여 적용하였습니다.
-
-```jsx
-<BottomScrollListener onBottom={this.props.getDogs}>...</BottomScrollListener>
-```
+- 구현 예정
+  - List 스타일: flex + order 또는 css + javascript
+  - List 페이지네이션: debounce 또는 throttle 적용하여 최적화

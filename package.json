@@ -5,9 +5,7 @@
   "dependencies": {
     "node-sass": "^4.11.0",
     "react": "^16.6.3",
-    "react-bottom-scroll-listener": "^2.1.2",
     "react-dom": "^16.6.3",
-    "react-masonry-component": "^6.2.1",
     "react-redux": "^6.0.0",
     "react-scripts": "2.1.1",
     "redux": "^4.0.1",
