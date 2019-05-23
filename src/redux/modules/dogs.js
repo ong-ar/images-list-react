@@ -1,22 +1,35 @@
 // actions
-const ADD_DOGS = "ADD_DOGS";
-const CLEAR_DOGS = "CLEAR_DOGS";
+const ADD_DOGS = 'ADD_DOGS';
+const CLEAR_DOGS = 'CLEAR_DOGS';
 
-const addDogs = images => {
+function addDogs(images) {
   return {
     type: ADD_DOGS,
-    images
+    images,
   };
-};
+}
 
-const clearDogs = () => {
+function clearDogs() {
   return {
-    type: CLEAR_DOGS
+    type: CLEAR_DOGS,
   };
-};
+}
 
 // initial state
 const initialState = { images: [] };
+
+// reducer function
+function applyClearDogs() {
+  return {
+    images: [],
+  };
+}
+
+function applyAddDogs(state, action) {
+  return {
+    images: [...state.images, ...action.images],
+  };
+}
 
 // reducer
 const reducer = (state = initialState, action) => {
@@ -30,32 +43,19 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-// reducer function
-const applyClearDogs = () => {
-  return {
-    images: []
-  };
-};
-
-const applyAddDogs = (state, action) => {
-  return {
-    images: [...state.images, ...action.images]
-  };
-};
-
 // API actions
-const getDogs = () => {
-  return dispatch => {
-    fetch("/data.json")
+function getDogs() {
+  return (dispatch) => {
+    fetch('/data.json')
       .then(response => response.json())
       .then(images => dispatch(addDogs(images)))
-      .catch(err => console.log(err));
+      .catch(); // error
   };
-};
+}
 
 const actionCreators = {
   getDogs,
-  clearDogs
+  clearDogs,
 };
 export { actionCreators };
 
