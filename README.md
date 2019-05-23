@@ -62,7 +62,13 @@
 $ yarn add redux-thunk
 
 # 개발 툴로 redux 디버깅 관련 패키지
-$ yarn add redux-devtools-extension --dev
+$ yarn add redux-devtools-extension
+
+# airbnb 의 js, jsx eslint rule
+$ yarn add eslint-config-airbnb --dev
+
+# 매 프로젝트마다 설치하는 것보다 작업자 로컬에 한번 설치 되는 것이 나을 것 같습니다.
+$ yarn global add eslint
 ```
 
 #### todo
@@ -80,13 +86,29 @@ $ yarn add redux-devtools-extension --dev
 #### 설명
 
 - eslint
+
   - react-app (default)
   - airbnb (https://github.com/airbnb/javascript/tree/master/react)
   - `package.json`에 설정되어있어서 airbnb 추가하였습니다.
 
+- prettier
+
+  - `settings.json` 에서 "eslint.autoFixOnSave": true 설정하여 사용했습니다.
+
+- redux
+
+  - getDogs: redux-chunk 미들웨어 적용하여 `/data.json` fetch 후 dogs state 에 추가
+  - clearDogs: image url 이 포함되어있는 dogs state 를 초기화
+
+- Buttons.js
+
 구조는 크게 바꾸지 않고 구현했습니다.  
 `GET DOGS` 와 `CLEAR DOGS` 를 보고 redux 를 사용하여 구현하기를 유도하신 거 같아 두 개의 액션을 만들어서 `Buttons.js`에 적용했습니다. API Request 처럼 외부 데이터를 fetch 하여 state 를 관리할 수 있도록 redux-chunk 미들웨어를 적용하였습니다.
 
+- List.js
+
+  - d
+
 - 구현 예정
-  - List 스타일: flex + order 또는 css + javascript
+  - List 스타일: css + javascript
   - List 페이지네이션: debounce 또는 throttle 적용하여 최적화
