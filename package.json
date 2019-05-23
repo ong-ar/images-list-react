@@ -17,7 +17,13 @@
     "build": "react-scripts build"
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": [
+      "react-app",
+      "airbnb"
+    ]
+  },
+  "prettier": {
+    "singleQuote": true
   },
   "browserslist": [
     ">0.2%",
@@ -26,6 +32,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "eslint-config-airbnb": "^17.1.0",
     "redux-devtools-extension": "^2.13.8"
   }
 }

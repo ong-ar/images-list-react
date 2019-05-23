@@ -75,8 +75,14 @@ $ yarn add redux-devtools-extension --dev
 - [x] List
   - [ ] 스타일
   - [ ] 페이지네이션
+- [ ] eslint
 
 #### 설명
+
+- eslint
+  - react-app (default)
+  - airbnb (https://github.com/airbnb/javascript/tree/master/react)
+  - `package.json`에 설정되어있어서 airbnb 추가하였습니다.
 
 구조는 크게 바꾸지 않고 구현했습니다.  
 `GET DOGS` 와 `CLEAR DOGS` 를 보고 redux 를 사용하여 구현하기를 유도하신 거 같아 두 개의 액션을 만들어서 `Buttons.js`에 적용했습니다. API Request 처럼 외부 데이터를 fetch 하여 state 를 관리할 수 있도록 redux-chunk 미들웨어를 적용하였습니다.
