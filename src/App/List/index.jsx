@@ -17,26 +17,22 @@ class List extends PureComponent {
       const css = element.style;
       css.position = 'absolute';
       if (i === 0) {
-        css.left = '0px';
-      } else if (parentOffsetWidth <= childrenElements[i - 1].offsetLeft + childrenElements[i - 1].offsetWidth) {
-        if (firstNewlineIndex === -1) {
-          firstNewlineIndex = i;
-        }
-        if (firstNewlineIndex !== -1) {
-          css.top = `${childrenElements[i - firstNewlineIndex].offsetTop
-             + childrenElements[i - firstNewlineIndex].offsetHeight}px`;
-          console.log(childrenElements[i - firstNewlineIndex].offsetHeight, childrenElements[i - firstNewlineIndex].offsetTop);
-        } else {
-          css.top = '0px';
-        }
+        css.top = '0px';
         css.left = '0px';
       } else {
-        css.left = `${childrenElements[i - 1].offsetLeft + childrenElements[i - 1].offsetWidth}px`;
-        if (firstNewlineIndex !== -1) {
-          css.top = `${childrenElements[i - firstNewlineIndex].offsetTop
-             + childrenElements[i - firstNewlineIndex].offsetHeight}px`;
-        } else {
+        if (parentOffsetWidth <= childrenElements[i - 1].offsetLeft
+          + childrenElements[i - 1].offsetWidth && firstNewlineIndex === -1) {
+          firstNewlineIndex = i;
+        }
+
+        if (firstNewlineIndex === -1) {
           css.top = '0px';
+          css.left = `${childrenElements[i - 1].offsetLeft + childrenElements[i - 1].offsetWidth}px`;
+        } else {
+          css.top = `${childrenElements[i - firstNewlineIndex].offsetTop
+            + childrenElements[i - firstNewlineIndex].offsetHeight}px`;
+
+          css.left = `${childrenElements[i - firstNewlineIndex].offsetLeft}px`;
         }
       }
     }
@@ -49,7 +45,7 @@ class List extends PureComponent {
         className="Container"
         id="Container"
       >
-        {dogs.images.map((image, index) => <img src={image} alt={index} key={index} />)}
+        {dogs.images.map((image, index) => <div><img src={image} alt={index} key={index} /></div>)}
       </div>
     );
   }
