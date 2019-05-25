@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-// import { actionCreators as dogsActions } from '../../redux/modules/dogs';
+import { actionCreators as dogsActions } from '../../redux/modules/dogs';
 import './index.scss';
 
 class List extends PureComponent {
@@ -11,6 +11,7 @@ class List extends PureComponent {
   // img 버블링이 불가능하여 img onLoad
   // onload 시 모두 실행되지 않도록 debounce 적용
   handleOnLoad = _.debounce(() => {
+    console.log('call handleOnLoad');
     const parentElement = this.list;
     const parentOffsetWidth = parentElement.offsetWidth;
     const childrenElements = parentElement.children;
@@ -92,6 +93,25 @@ class List extends PureComponent {
     parentElement.style.height = `${parentHeight}px`;
   }, 100);
 
+  // handle scroll
+  // scroll event 호출이 제어 throttle 적용
+  handleOnScroll = _.throttle(() => {
+    console.log('call handleOnScroll');
+    const { dogs, getDogs } = this.props;
+
+    if (dogs.images.length > 0 && window.scrollY + window.innerHeight
+      >= this.list.scrollHeight + this.list.offsetTop - 100
+    ) { getDogs(); }
+  }, 500);
+
+  componentDidMount() {
+    document.addEventListener('scroll', this.handleOnScroll);
+  }
+
+  componentWillUnmount() {
+    document.removeEventListener('scroll', this.handleOnScroll);
+  }
+
 
   render() {
     const { dogs } = this.props;
@@ -103,7 +123,7 @@ class List extends PureComponent {
         {dogs.images.map((image, index) => {
           // key 로 index 값을 사용하지 못하여 임시로 재정의하여 사용
           // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-array-index-key.md
-          const key = index;
+          const key = `${index}`;
 
           // onload 는 버블링이 되지 않아 이미지 이벤트에 정렬 적용
           return (
@@ -121,12 +141,13 @@ class List extends PureComponent {
 // props type
 List.propTypes = {
   dogs: propTypes.shape({ images: propTypes.array.isRequired }).isRequired,
+  getDogs: propTypes.func.isRequired,
 };
-/*
+
 const mapActionToProps = dispatch => ({
   getDogs: () => dispatch(dogsActions.getDogs()),
 });
-*/
+
 
 const mapStateToProps = (state) => {
   const { dogs } = state;
@@ -135,5 +156,5 @@ const mapStateToProps = (state) => {
 
 export default connect(
   mapStateToProps,
-  null,
+  mapActionToProps,
 )(List);
