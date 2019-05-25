@@ -1,12 +1,16 @@
 import React, { PureComponent } from 'react';
 import propTypes from 'prop-types';
 import { connect } from 'react-redux';
+import _ from 'lodash';
 // import { actionCreators as dogsActions } from '../../redux/modules/dogs';
 import './index.scss';
 
 
 class List extends PureComponent {
-  static sortImages() {
+  // img 버블링이 불가능하여 img onLoad
+  // onload 시 모두 실행되지 않도록 debounce 적용
+  static sortImages = _.debounce(() => {
+    console.log('sort images call');
     const parentElement = document.querySelector('#Container');
     const parentOffsetWidth = parentElement.offsetWidth;
     const childrenElements = parentElement.children;
@@ -43,7 +47,7 @@ class List extends PureComponent {
           if (i % firstNewlineIndex === 0) {
             const columns = firstNewlineIndex;
             // 이전 행의 index 를 array value 로 만듬
-            columnsInfo = Array.from({ length: columns }, (_, k) => k + i - columns)
+            columnsInfo = Array.from({ length: columns }, (__, k) => k + i - columns)
               .map(index => ({
                 top: childrenElements[index].offsetTop
                  + childrenElements[index].offsetHeight,
@@ -68,8 +72,7 @@ class List extends PureComponent {
         }
       }
     }
-    parentElement.style.height = `${parentElement.scrollHeight}px`;
-  }
+  }, 100);
 
   render() {
     const { dogs } = this.props;
