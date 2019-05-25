@@ -67,9 +67,6 @@ $ yarn add redux-devtools-extension
 # airbnb 의 js, jsx eslint rule
 $ yarn add eslint-config-airbnb --dev
 
-# 매 프로젝트마다 설치하는 것보다 작업자 로컬에 한번 설치 되는 것이 나을 것 같습니다.
-$ yarn global add eslint
-
 # 이벤트 호출에 적용할 debounce, throttle 을 위한 패키지
 $ yarn add lodash
 ```
