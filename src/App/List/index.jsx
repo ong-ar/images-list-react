@@ -6,18 +6,58 @@ import { actionCreators as dogsActions } from '../../redux/modules/dogs';
 import './index.scss';
 
 class List extends PureComponent {
+  // ref
   list = null;
 
-  // img 버블링이 불가능하여 img onLoad
   // onload 시 모두 실행되지 않도록 debounce 적용
   handleOnLoad = _.debounce(() => {
-    console.log('call handleOnLoad');
+    // console.log('call handleOnLoad');
+    this.masonry();
+  }, 100);
+
+  // window resize 될 경우 768 이상에서만 재정렬
+  handleOnResize = _.throttle(() => {
+    // console.log('call handleOnResize');
+    const { dogs } = this.props;
+
+    // image 갯수가 0개가 아니고 화면 width 가 768 보다 클 떄 masonry 정렬 호출
+    if (dogs.images.length > 0 && window.innerWidth > 768) {
+      this.masonry();
+    }
+  }, 500);
+
+  // handle scroll
+  // scroll event 호출이 제어 throttle 적용
+  handleOnScroll = _.throttle(() => {
+    // console.log('call handleOnScroll');
+    const { dogs, getDogs } = this.props;
+
+    // 스크롤 위치 + 내부 화면 크기 >= list height + top 위치 - 100 경우
+    if (dogs.images.length > 0 && window.scrollY + window.innerHeight
+      >= this.list.scrollHeight + this.list.offsetTop - 100
+    ) { getDogs(); }
+  }, 500);
+
+  // 마운트
+  componentDidMount() {
+    window.addEventListener('scroll', this.handleOnScroll);
+    window.addEventListener('resize', this.handleOnResize);
+  }
+
+  // 언마운트
+  componentWillUnmount() {
+    window.removeEventListener('scroll', this.handleOnScroll);
+    window.removeEventListener('resize', this.handleOnResize);
+  }
+
+  // masonry 정렬 함수
+  masonry() {
     const parentElement = this.list;
     const parentOffsetWidth = parentElement.offsetWidth;
     const childrenElements = parentElement.children;
     let firstNewlineIndex = -1; // 한 줄에 몇개의 컬럼이 있는지 담는 변수
     let columnsInfo = []; // masonry 정렬을 위해 필요한 변수
-    let parentHeight = 0;
+    let parentHeight = 0; // 부모 height 담고 있을 변수
 
     // children 엘리먼트 전부 한번씩 접근
     for (let i = 0; i < childrenElements.length; i += 1) {
@@ -72,7 +112,6 @@ class List extends PureComponent {
                 return 0;
               });
           }
-          // 계산 된 top, left 적용
 
           const applyingIndex = i % firstNewlineIndex;
           const { top: applyingTop, left: applyingLeft } = columnsInfo[applyingIndex];
@@ -90,28 +129,10 @@ class List extends PureComponent {
       parentHeight = top + element.offsetHeight > parentHeight
         ? top + element.offsetHeight : parentHeight;
     }
+
+    // 부모 엘리먼트 height 적용 (bottom 이벤트)
     parentElement.style.height = `${parentHeight}px`;
-  }, 100);
-
-  // handle scroll
-  // scroll event 호출이 제어 throttle 적용
-  handleOnScroll = _.throttle(() => {
-    console.log('call handleOnScroll');
-    const { dogs, getDogs } = this.props;
-
-    if (dogs.images.length > 0 && window.scrollY + window.innerHeight
-      >= this.list.scrollHeight + this.list.offsetTop - 100
-    ) { getDogs(); }
-  }, 500);
-
-  componentDidMount() {
-    document.addEventListener('scroll', this.handleOnScroll);
   }
-
-  componentWillUnmount() {
-    document.removeEventListener('scroll', this.handleOnScroll);
-  }
-
 
   render() {
     const { dogs } = this.props;
@@ -125,10 +146,9 @@ class List extends PureComponent {
           // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-array-index-key.md
           const key = `${index}`;
 
-          // onload 는 버블링이 되지 않아 이미지 이벤트에 정렬 적용
           return (
-            <div>
-              <img src={image} alt={index} key={key} onLoad={this.handleOnLoad} />
+            <div key={key}>
+              <img src={image} alt={index} onLoad={this.handleOnLoad} />
             </div>
           );
         })}

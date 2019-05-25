@@ -7,13 +7,36 @@
     width: 24%;
     min-height: 100px;
     padding: 0.5%;
-    margin: 0 auto;
     opacity: 0;
     animation: fade-in 1s 0.5s;
     animation-fill-mode: forwards;
     img {
       max-width: 100%;
       max-height: 100%;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .List {
+    width: 80%;
+    position: block;
+    margin: 0 auto;
+    min-height: 100px;
+    div {
+      top: 0 !important;
+      left: 0 !important;
+      position: relative !important;
+      width: 99%;
+      min-height: 100px;
+      padding: 0.5%;
+      opacity: 0;
+      animation: fade-in 1s 0.5s;
+      animation-fill-mode: forwards;
+      img {
+        max-width: 100%;
+        max-height: 100%;
+      }
     }
   }
 }

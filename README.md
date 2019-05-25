@@ -69,6 +69,9 @@ $ yarn add eslint-config-airbnb --dev
 
 # 매 프로젝트마다 설치하는 것보다 작업자 로컬에 한번 설치 되는 것이 나을 것 같습니다.
 $ yarn global add eslint
+
+# 이벤트 호출에 적용할 debounce, throttle 을 위한 패키지
+$ yarn add lodash
 ```
 
 #### todo
@@ -79,9 +82,10 @@ $ yarn global add eslint
   - [x] CLEAR_DOGS
 - [x] Button
 - [x] List
-  - [ ] 스타일
-  - [ ] 페이지네이션
-- [ ] eslint
+  - [x] 스타일
+  - [x] 페이지네이션
+- [x] eslint
+  - [x] airbnb
 
 #### 설명
 
@@ -107,8 +111,22 @@ $ yarn global add eslint
 
 - List.js
 
-  - d
+  1. masonry
 
-- 구현 예정
-  - List 스타일: css + javascript
-  - List 페이지네이션: debounce 또는 throttle 적용하여 최적화
+  - 부모 엘리먼트를 `ref` 로 잡고 자식 엘리먼트들을 순차 접근하여 position: absolute, top 과 left 위치 계산하여 각각 적용
+  - position: absolute 일 경우 부모 엘리먼트의 height 가 적용되지 않으므로 자식 엘리먼트들을 계산할 때 전체 height 도 계산하여 적용
+
+  2. pagination
+
+  - 부모 엘리먼트의 height 와 top 값 / 스크롤값 + 내부 화면 height 값이 같으면 `getDogs` 를 호출하도록 함 (여유롭게 100 정도 더 주었다)
+
+  3. 반응형
+
+  - 768px 이상일 경우 window resize 가 있을 경우 masonry 재정렬
+  - 768px 이하일 경우는 position: relation, top과 left 를 제거하였습니다. (!important 적용)
+
+  4. 이벤트 호출 최적화
+
+  - img onLoad, window scroll, window resize 이벤트 리스너를 사용
+  - img onLoad 는 마지막 호출 때 정렬하면 되므로 debounce 적용
+  - scroll, resize 같은 경우 계속해서 움직이는 과정에서도 호출이 필요하므로 throttle 적용
