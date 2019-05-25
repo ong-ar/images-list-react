@@ -67,6 +67,9 @@ $ yarn add redux-devtools-extension
 # airbnb 의 js, jsx eslint rule
 $ yarn add eslint-config-airbnb --dev
 
+# polyfill 적용 (ie9+)
+$ yarn add react-app-polyfill
+
 # 이벤트 호출에 적용할 debounce, throttle 을 위한 패키지
 $ yarn add lodash
 ```
