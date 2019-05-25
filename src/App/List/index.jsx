@@ -5,7 +5,6 @@ import _ from 'lodash';
 // import { actionCreators as dogsActions } from '../../redux/modules/dogs';
 import './index.scss';
 
-
 class List extends PureComponent {
   // img 버블링이 불가능하여 img onLoad
   // onload 시 모두 실행되지 않도록 debounce 적용
@@ -81,7 +80,18 @@ class List extends PureComponent {
         className="Container"
         id="Container"
       >
-        {dogs.images.map((image, index) => <div><img src={image} alt={index} key={index} onLoad={List.sortImages} /></div>)}
+        {dogs.images.map((image, index) => {
+          // key 로 index 값을 사용하지 못하여 임시로 재정의하여 사용
+          // https://github.com/yannickcr/eslint-plugin-react/blob/master/docs/rules/no-array-index-key.md
+          const key = index;
+
+          // onload 는 버블링이 되지 않아 이미지 이벤트에 정렬 적용
+          return (
+            <div>
+              <img src={image} alt={index} key={key} onLoad={List.sortImages} />
+            </div>
+          );
+        })}
       </div>
     );
   }
