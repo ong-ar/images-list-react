@@ -19,7 +19,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "lint": "eslint --ext .jsx,.js src/"
+    "lint": "eslint --ext .jsx,.js src/ --quiet"
   },
   "eslintConfig": {
     "extends": [
