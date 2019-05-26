@@ -94,6 +94,7 @@ $ yarn add lodash
   - react-app (default)
   - airbnb (https://github.com/airbnb/javascript/tree/master/react)
   - `package.json`에 설정되어있어서 airbnb 추가하였습니다.
+  - `lint` script 추가 /src 내 js, jsx lint 검사 `yarn run lint`
 
 - prettier
 
@@ -128,5 +129,5 @@ $ yarn add lodash
   4. 이벤트 호출 최적화
 
   - img onLoad, window scroll, window resize 이벤트 리스너를 사용
-  - img onLoad 는 마지막 호출 때 정렬하면 되므로 debounce 적용
+  - img onLoad 는 마지막 호출 때 정렬하면 되므로 debounce 적용 (호출 간격이 크다면 여러 번 호출)
   - scroll, resize 같은 경우 계속해서 움직이는 과정에서도 호출이 필요하므로 throttle 적용
