@@ -23,9 +23,23 @@
   },
   "eslintConfig": {
     "extends": [
-      "react-app",
       "airbnb"
-    ]
+    ],
+    "plugins": [
+      "react"
+    ],
+    "env": {
+      "browser": true,
+      "es6": true
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+      "ecmaFeatures": {
+        "jsx": true
+      },
+      "ecmaVersion": 2018,
+      "sourceType": "module"
+    }
   },
   "browserslist": [
     ">0.2%",
