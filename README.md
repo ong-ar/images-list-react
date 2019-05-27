@@ -94,8 +94,8 @@ $ yarn add lodash
   - extends: airbnb 적용 (https://github.com/airbnb/javascript/tree/master/react)
   - `package.json`에 설정되어있어서 airbnb 추가하였습니다.
   - `lint` script 추가 /src 내 js, jsx lint 검사 `yarn run lint`
-  - `settings.json` 에서 `"eslint.autoFixOnSave": true` 설정하여 사용했습니다.
-  - `eslint warning이 뜨지 않는 방식으로 추가해주시면 좋을 것 같고요.`이 조금 이해가 안되어 script `--quiet` 옵션을 적용하였고, vscode 에서는 `"eslint.quiet": true`를 적용하여 구현했습니다.
+  - vscode IDE 기준 `settings.json` 에서 `"eslint.autoFixOnSave": true` 설정하여 사용했습니다.
+  - `eslint warning이 뜨지 않는 방식으로 추가해주시면 좋을 것 같고요.`이 조금 이해가 안되어 script `--quiet` 옵션을 적용하였고, vscode IDE 에서는 `"eslint.quiet": true`를 적용하여 구현했습니다.
 
 - redux
 
