@@ -32,7 +32,7 @@ function applyAddDogs(state, action) {
 }
 
 // reducer
-const reducer = (state = initialState, action) => {
+function reducer(state = initialState, action) {
   switch (action.type) {
     case CLEAR_DOGS:
       return applyClearDogs();
@@ -41,7 +41,7 @@ const reducer = (state = initialState, action) => {
     default:
       return state;
   }
-};
+}
 
 // API actions
 function getDogs() {

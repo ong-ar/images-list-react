@@ -33,7 +33,7 @@ class List extends PureComponent {
     const { dogs, getDogs } = this.props;
 
     // 스크롤 위치 + 내부 화면 크기 >= list height + top 위치 - 100 경우
-    if (dogs.images.length > 0 && window.scrollY + window.innerHeight
+    if (dogs.images.length > 0 && window.pageYOffset + window.innerHeight
       >= this.list.scrollHeight + this.list.offsetTop - 100
     ) { getDogs(); }
   }, 500);
