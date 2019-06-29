@@ -21,6 +21,11 @@
     "build": "react-scripts build",
     "lint": "eslint --ext .jsx,.js src/ --quiet"
   },
+  "husky": {
+    "hooks": {
+      "pre-commit": "yarn lint"
+    }
+  },
   "eslintConfig": {
     "extends": [
       "airbnb"
@@ -48,6 +53,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "eslint-config-airbnb": "^17.1.0"
+    "eslint-config-airbnb": "^17.1.0",
+    "husky": "^2.7.0"
   }
 }
